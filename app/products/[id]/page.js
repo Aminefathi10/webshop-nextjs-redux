@@ -4,7 +4,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import GppGoodIcon from '@mui/icons-material/GppGood';
 import Products from '../../components/Products';
-import Slider from './Slider.jsx'
+import Slider from './Slider.jsx';
+import AddItem_Buy from './AddItem_Buy'
 
 const currentDate = new Date();
 currentDate.setDate(currentDate.getDate() + 5);
@@ -19,10 +20,11 @@ async function getProductsData(id) {
 async function Details({ location, params }) {
 
 
-    const {title, description, category, images, price, rating} = await getProductsData(params.id);
+    const {id, title, description, category, images, price, rating} = await getProductsData(params.id);
 
     const fakePrice = Math.floor(Math.random() * ( Math.ceil(price) - 5)) + 5 + Math.ceil(price);
-    const fakePercentage  =  100 - Math.floor((Math.ceil(price) * 100) / fakePrice) 
+    const fakePercentage  =  100 - Math.floor((Math.ceil(price) * 100) / fakePrice);
+
 
   return (
     <div className='max-w-[1300px] md:flex mx-auto'>
@@ -94,7 +96,7 @@ async function Details({ location, params }) {
                   <div className='flex justify-between items-end pr-4 mb-2'>
                     <h1 className='my-3 font-bold'>Quantity</h1>
                     
-                    <select className='p-2 font-medium text-gray-500 text-sm w-15 rounded-md border-2 border-emerald-400 bg-teal-200'>
+                    <select name='quan' className='p-2 font-medium text-gray-500 text-sm w-15 rounded-md border-2 border-emerald-400 bg-teal-200'>
                       <option className='mb-1 bg-slate-500 text-white' name="1" id="">1</option>
                       <option className='mb-1 bg-slate-500 text-white' name="2" id="">2</option>
                       <option className='mb-1 bg-slate-500 text-white' name="3" id="">3</option>
@@ -103,14 +105,11 @@ async function Details({ location, params }) {
                     </select>
                   </div>
                   
-                  <div className='hidden md:flex justify-center md:flex-col md:justify-evenly font-bold'>
-                    <button className='px-8 py-2 border-2 md:border-none md:px-9 md:py-3 bg-teal-500 border-teal-500  text-white rounded-l-full md:rounded-full md:mb-2 hover:bg-teal-400'>
-                      Purchase Now
-                    </button>
-                    <button className='px-8 py-2 border-2 border-teal-500 text-teal-500 md:rounded-full rounded-r-full hover:bg-teal-100'>
-                      Add To Cart
-                    </button>
-                  </div>
+                  <AddItem_Buy
+                   product={{id, title, description, category, images, price, rating}}
+                   divClasses='hidden md:flex justify-center md:flex-col md:justify-evenly font-bold'
+                   addClasses='px-8 py-2 border-2 border-teal-500 text-teal-500 md:rounded-full rounded-r-full hover:bg-teal-100'
+                   buyClasses='px-8 py-2 border-2 md:border-none md:px-9 md:py-3 bg-teal-500 border-teal-500  text-white rounded-l-full md:rounded-full md:mb-2 hover:bg-teal-400' />
             </div>
 
             <div className='mt-4 block md:hidden'>
@@ -119,14 +118,11 @@ async function Details({ location, params }) {
           </div>
 
           </div>
-          <div className='flex justify-center md:hidden font-bold bg-white w-full sticky bottom-0 py-1'>
-                    <button className='px-8 py-2 border-2 bg-teal-500 border-teal-500  text-white rounded-l-full hover:bg-teal-400 hover:border-teal-400'>
-                      Purchase Now
-                    </button>
-                    <button className='px-8 py-2 border-2 border-teal-500 text-teal-500 rounded-r-full hover:bg-teal-100 hover:border-teal-400 border-l-none'>
-                      Add To Cart
-                    </button>
-          </div>
+          <AddItem_Buy
+           product={{id, title, description, category, images, price, rating}}
+           divClasses='flex justify-center md:hidden font-bold bg-white w-full sticky bottom-0 py-1'
+           buyClasses='px-8 py-2 border-2 bg-teal-500 border-teal-500  text-white rounded-l-full hover:bg-teal-400 hover:border-teal-400'
+           addClasses='px-8 py-2 border-2 border-teal-500 text-teal-500 rounded-r-full hover:bg-teal-100 hover:border-teal-400 border-l-none' />
     </div>
   )
 }

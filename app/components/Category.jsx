@@ -4,7 +4,7 @@ function Category(props) {
   return (
     
       <div className={props.classes}>
-      <Link href={'/' + props.category}>
+      <Link href={'/category/' + props.category}>
           <h1 className="px-3 font-bold text-xl">{props.title}</h1>
           <div className="grid grid-cols-2 w-full my-3 gap-2">
               <img className="flex-grow grid-flow-dense w-full" src={props.Image} alt="" />

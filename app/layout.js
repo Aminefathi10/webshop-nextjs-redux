@@ -3,7 +3,8 @@ import "./globals.css";
 
 import Header from "./components/Header";
 import SideMenu from "./components/SideMenu";
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import ReduxProvider from "./ReduxProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -39,10 +40,13 @@ export default async function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <SideMenu />
-        {children}
-        <Footer />
+        <ReduxProvider>
+          <Header />
+          <SideMenu />
+          {children}
+          <Footer />
+        </ReduxProvider>
+        
       </body>
     </html>
   );

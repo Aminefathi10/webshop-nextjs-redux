@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../assets/logo.png";
-import Search from "./Search.jsx"
-import MenuButton from './MenuButton.jsx'
+import Search from "./Search.jsx";
+import MenuButton from './MenuButton.jsx';
 import PersonIcon from '@mui/icons-material/Person';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import CartButton from './CartButton.jsx'
 
 async function getProductsData() {
   const res = await fetch('http://localhost:5000/products');
@@ -13,7 +13,7 @@ async function getProductsData() {
 }
 
 
-async function Header(props) {
+async function Header() {
  
   const products = await getProductsData(); 
 
@@ -35,10 +35,7 @@ async function Header(props) {
         <Search products={products} classNames="flex-1 border-2 h-10 border-slate-500 text-slate-500 rounded-md relative pl-3 hidden md:flex items-center focus-within:text-sky-500 focus-within:border-sky-500 ml-2 bg-white" /> 
        
         <div className="flex align-center justify-evenly ml-3">
-          <div className="flex flex-col items-center justify-center text-white cursor-pointer hover:text-sky-400 font-semibold">
-            <ShoppingCartIcon />
-            <h3 className="hidden md:block ">Basket</h3>
-        </div>
+          <CartButton />
         <div className="flex flex-col items-center justify-center mx-4 text-white cursor-pointer hover:text-sky-400 font-semibold">
           <FavoriteIcon />
           <h3 className="hidden md:block ">Favorite</h3>

@@ -2,10 +2,8 @@
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import PersonIcon from '@mui/icons-material/Person';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Link from 'next/link';
-
+import Add_Fav from './Add_Fav.jsx'
 
 async function getProductsData(category) {
   const res = await fetch('http://localhost:5000/products/');
@@ -34,14 +32,7 @@ async function Products({ category }) {
             <h2 className='font-semibold text-gray-700'>${price}</h2>
             <p className='line-clamp-2 md:line-clamp-3 text-sm leading-tight sm:hidden md:hidden'>{description}</p>
             </div>
-            <div className="flex flex-col justify-evenly text-sky-700 px-3 py-2 sm:absolute top-32 right-0 sm:w-fit">
-              <button className='aspect-square rounded-full bg-teal-200 hover:bg-teal-300 p-1 md:mb-1'>
-                <AddShoppingCartIcon />
-              </button>
-              <button className='aspect-square rounded-full bg-teal-200 hover:bg-teal-300 p-1'>
-                <FavoriteBorderIcon />
-              </button>
-            </div>
+            <Add_Fav product={{ id, title, price, description, images, rating }} />
         </div>
         </Link>
       )) }
