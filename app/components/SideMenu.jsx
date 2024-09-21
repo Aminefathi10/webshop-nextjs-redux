@@ -3,16 +3,42 @@
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import CloseIcon from '@mui/icons-material/Close';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getUserLocation } from '../redux/features/location/locationSlice';
 
 
 
-function SideMenu({username, country, flag}) {
+function SideMenu({username}) {
     const categoriesRef = useRef(null);
     const arrowDownRef = useRef(null);
     const arrowDownRef_2 = useRef(null);
     const brandsRef = useRef(null);
+
+    const [ country, setCountry ] = useState('United States');
+    const [ flag, setFlag ] = useState('https://flagcdn.com/us.svg');
+
+    const dispatch = useDispatch();
     
+    useEffect(() => {
+        fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            //  addDoc(colRef, {
+            //         ip: data.ip
+            //  })
+            fetch(`http://ip-api.com/json/${data.ip}`)
+            .then(res => res.json())
+            .then(location => {
+                setCountry(location.country);
+                const code = location.countryCode.toLowerCase();
+                setFlag(`https://flagcdn.com/${code}.svg`);
+                dispatch(getUserLocation(location.country))
+            })
+            .catch(error => console.error('Error fetching IP:', error));
+        })
+        .catch(error => console.error('Error fetching IP:', error));
+    }, []);
     
     function slideBack() {
         document.getElementById("slideref").classList.add("-translate-x-full");

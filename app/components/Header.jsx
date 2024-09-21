@@ -4,8 +4,8 @@ import logo from "../assets/logo.png";
 import Search from "./Search.jsx";
 import MenuButton from './MenuButton.jsx';
 import PersonIcon from '@mui/icons-material/Person';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import CartButton from './CartButton.jsx'
+import CartButton from './CartButton.jsx';
+import FavoriteButton from './FavoriteButton.jsx'
 
 async function getProductsData() {
   const res = await fetch('http://localhost:5000/products');
@@ -36,10 +36,7 @@ async function Header() {
        
         <div className="flex align-center justify-evenly ml-3">
           <CartButton />
-        <div className="flex flex-col items-center justify-center mx-4 text-white cursor-pointer hover:text-sky-400 font-semibold">
-          <FavoriteIcon />
-          <h3 className="hidden md:block ">Favorite</h3>
-        </div>
+        <FavoriteButton />
         <div className="flex flex-col items-center justify-center text-white cursor-pointer hover:text-sky-400 font-semibold">
             <PersonIcon />
             <h3 className="hidden md:block ">login</h3>

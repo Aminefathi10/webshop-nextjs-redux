@@ -1,9 +1,12 @@
 "use client"
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectItems, addToBasket } from '../redux/features/basket/basketSlice';
+import { addToFavorite, removeFromFavorite, selectLikedItems } from '../redux/features/favorite/fovoriteSlice';
+
 // import { useRouter } from 'next/router';
 
 function Add_Fav({ product }) {
@@ -11,15 +14,26 @@ function Add_Fav({ product }) {
   const dispatch = useDispatch();
   // const router = useRouter();
   const isAdded = useSelector(selectItems).some(item => item.id === product.id);
+  const isLiked = useSelector(selectLikedItems).some(item => item.id === product.id);
 
   function addProduct(event) {
+      event.stopPropagation();
+      event.preventDefault();
     if (isAdded) {
       // router.push('/');
       return
     }
-      event.stopPropagation();
-      event.preventDefault();
       dispatch(addToBasket(product));
+  }
+
+  function likeItem(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    if (isLiked) {
+      dispatch(removeFromFavorite(product.id));
+      return
+    }
+    dispatch(addToFavorite(product));
   }
 
     return (
@@ -28,8 +42,9 @@ function Add_Fav({ product }) {
               {!isAdded && <AddShoppingCartIcon />}
               {isAdded && <ShoppingCartCheckoutIcon />}
             </button>
-            <button className='aspect-square rounded-full bg-teal-200 hover:bg-teal-300 p-1'>
-              <FavoriteBorderIcon />
+            <button onClick={likeItem} className='aspect-square rounded-full bg-teal-200 hover:bg-teal-300 p-1 felx justify-center items-center'>
+              {!isLiked && <FavoriteBorderIcon />}
+              {isLiked && <FavoriteIcon className='text-red-500' />}
             </button>
         </div>
     )
