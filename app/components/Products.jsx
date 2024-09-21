@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Add_Fav from './Add_Fav.jsx'
 
 async function getProductsData(category) {
-  const res = await fetch('http://localhost:5000/products/');
+  const res = await fetch('http://localhost:3000/api/products');
   return !category ? res.json() : res.json()
   .then(res => res.filter(item => item.category === category));
 }

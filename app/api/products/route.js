@@ -1,19 +1,12 @@
-const path = require('path');
-const fs = require('fs');
+import { NextResponse } from "next/server";
+import fs from 'fs';
+import path from "path";
 
-const dataPath = path.join(__dirname, '_data', 'products.json')
 
-export  default function handler(req, res) {
+export async function GET() {
+   const filePath = path.join(process.cwd(), '_data', 'products.json');
+   const fileData = fs.readFileSync(filePath, 'utf8');
+   const jsonData = JSON.parse(fileData);
 
-    fs.readFile(dataPath, (err, data) => {
-        if(err) {
-           return res.status(500).json({
-                message: 'Error reading the data'
-            });
-        }
-       const jsonData = JSON.parse(data);
-
-       res.json(jsonData);
-    });
-    
+   return NextResponse.json(jsonData);
 }

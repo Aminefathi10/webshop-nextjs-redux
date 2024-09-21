@@ -5,8 +5,7 @@ import { selectLocation } from '@/app/redux/features/location/locationSlice';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import GppGoodIcon from '@mui/icons-material/GppGood';
 import AddItem_Buy from './AddItem_Buy';
-import Products from '../../components/Products';
-
+import { useState } from 'react';
 
 const currentDate = new Date();
 currentDate.setDate(currentDate.getDate() + 5);
@@ -17,6 +16,12 @@ const deliveryDate = currentDate.getDate() + " - " + months[currentDate.getMonth
 function ShippingDetails({ product }) {
     
     const location = useSelector(selectLocation);
+        
+    const [quantity, setQuantity] = useState(1);
+
+    function handleChange (e) {
+      setQuantity(e.target.value);
+    }
 
   return (
     <>
@@ -46,17 +51,17 @@ function ShippingDetails({ product }) {
                   <div className='flex justify-between items-end pr-4 mb-2'>
                     <h1 className='my-3 font-bold'>Quantity</h1>
                     
-                    <select name='quan' className='p-2 font-medium text-gray-500 text-sm w-15 rounded-md border-2 border-emerald-400 bg-teal-200'>
-                      <option className='mb-1 bg-slate-500 text-white' name="1" id="">1</option>
-                      <option className='mb-1 bg-slate-500 text-white' name="2" id="">2</option>
-                      <option className='mb-1 bg-slate-500 text-white' name="3" id="">3</option>
-                      <option className='mb-1 bg-slate-500 text-white' name="4" id="">4</option>
-                      <option className='mb-1 bg-slate-500 text-white' name="5" id="">5</option>
+                    <select onChange={handleChange} className='p-2 font-medium text-gray-500 text-sm w-15 rounded-md border-2 border-emerald-400 bg-teal-200'>
+                      <option className='mb-1 bg-slate-500 text-white'>1</option>
+                      <option className='mb-1 bg-slate-500 text-white'>2</option>
+                      <option className='mb-1 bg-slate-500 text-white'>3</option>
+                      <option className='mb-1 bg-slate-500 text-white'>4</option>
+                      <option className='mb-1 bg-slate-500 text-white'>5</option>
                     </select>
                   </div>
                   
                   <AddItem_Buy
-                   product={product}
+                   product={{...product, quantity}}
                    divClasses='hidden md:flex justify-center md:flex-col md:justify-evenly font-bold'
                    addClasses='px-8 py-2 border-2 border-teal-500 text-teal-500 md:rounded-full rounded-r-full hover:bg-teal-100'
                    buyClasses='px-8 py-2 border-2 md:border-none md:px-9 md:py-3 bg-teal-500 border-teal-500  text-white rounded-l-full md:rounded-full md:mb-2 hover:bg-teal-400' />
@@ -65,7 +70,7 @@ function ShippingDetails({ product }) {
             
           </div>
           <AddItem_Buy
-           product={product}
+           product={{...product, quantity}}
            divClasses='flex justify-center md:hidden font-bold bg-white w-full sticky bottom-0 py-1'
            buyClasses='px-8 py-2 border-2 bg-teal-500 border-teal-500  text-white rounded-l-full hover:bg-teal-400 hover:border-teal-400'
            addClasses='px-8 py-2 border-2 border-teal-500 text-teal-500 rounded-r-full hover:bg-teal-100 hover:border-teal-400 border-l-none' />
