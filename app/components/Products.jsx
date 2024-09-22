@@ -4,6 +4,9 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import PersonIcon from '@mui/icons-material/Person';
 import Link from 'next/link';
 import Add_Fav from './Add_Fav.jsx'
+import LottiePlayer from './LottiePlayer.jsx';
+import animationData from '../assets/animations/no-products-available.json'
+
 
 async function getProductsData(category) {
   const res = await fetch('http://localhost:3000/api/products');
@@ -16,7 +19,10 @@ async function Products({ category }) {
   const products = await getProductsData(category);
 
   return (
+    <>
+    { products.length === 0 && <LottiePlayer animationData={animationData} />}
     <div className='w-full px-2 sm:grid sm:grid-cols-3 md:grid-cols-4 mx-auto content-center justify-items-center'>
+      
       { products.map(({ id, title, price, description, images, rating }) => (
         <Link key={id} href={"/products/" + id}>
         <div className='flex justify-between h-28 sm:h-fit md:w-56 sm:52 group mb-5 cursor-pointer border-2 border-transparent hover:border-teal-700 rounded-xl overflow-hidden shadow-md sm:flex-col relative'>
@@ -37,6 +43,7 @@ async function Products({ category }) {
         </Link>
       )) }
     </div>
+    </>
   )
 }
 

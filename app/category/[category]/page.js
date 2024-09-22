@@ -7,7 +7,7 @@ async function CategoryDetails({ params }) {
     
 
   return (
-    <div>
+    <div className="pt-3">
       
       <Products category={category}/>
     </div>
