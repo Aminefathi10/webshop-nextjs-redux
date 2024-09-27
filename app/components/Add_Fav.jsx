@@ -6,13 +6,12 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectItems, addToBasket } from '../redux/features/basket/basketSlice';
 import { addToFavorite, removeFromFavorite, selectLikedItems } from '../redux/features/favorite/fovoriteSlice';
-
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 function Add_Fav({ product }) {
   
   const dispatch = useDispatch();
-  // const router = useRouter();
+  const router = useRouter();
   const isAdded = useSelector(selectItems).some(item => item.id === product.id);
   const isLiked = useSelector(selectLikedItems).some(item => item.id === product.id);
 
@@ -20,7 +19,7 @@ function Add_Fav({ product }) {
       event.stopPropagation();
       event.preventDefault();
     if (isAdded) {
-      // router.push('/');
+      router.push('/basket');
       return
     }
       dispatch(addToBasket(product));
@@ -33,7 +32,7 @@ function Add_Fav({ product }) {
       dispatch(removeFromFavorite(product.id));
       return
     }
-    dispatch(addToFavorite(product));
+    dispatch(addToFavorite({ quantity: 1, ...product}));
   }
 
     return (

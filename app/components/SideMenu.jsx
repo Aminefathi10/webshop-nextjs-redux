@@ -6,14 +6,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserLocation } from '../redux/features/location/locationSlice';
+import { useSession } from 'next-auth/react';
 
 
 
-function SideMenu({username}) {
+function SideMenu() {
     const categoriesRef = useRef(null);
     const arrowDownRef = useRef(null);
     const arrowDownRef_2 = useRef(null);
     const brandsRef = useRef(null);
+    const session = useSession();
 
     const [ country, setCountry ] = useState('United States');
     const [ flag, setFlag ] = useState('https://flagcdn.com/us.svg');
@@ -52,7 +54,7 @@ function SideMenu({username}) {
         
         <header className="flex w-full font-bold bg-slate-500 text-white py-4 px-2 justify-between">
 
-            <h1>Hello, {username ? username : "Sing in"}</h1>
+            <h1>Hello, {session.status === 'authenticated' ? session.data.user.name : "Sign in"}</h1>
             <button onClick={slideBack} className='w-7 h-7 rounded-full hover:bg-slate-400 flex items-center justify-center'><CloseIcon /></button>
 
 

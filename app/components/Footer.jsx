@@ -1,12 +1,12 @@
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import WhatssAppIcon from '@mui/icons-material/Whatsapp';
+import { GitHub } from '@mui/icons-material';
 
 function Footer() {
   return (
     <footer className="grid grid-cols-2 ms:grid-cols-3 md:grid-cols-4 bg-slate-600 text-white justify-items-center px-1 py-4">
-      <div className='p-3'>
+      <div className='p-3'Github>
         <h1 className='text-xl font-bold '>Customer service</h1>
         <p className='font-semibold hover:underline hover:text-yellow-400 cursor-pointer text-gray-300'>Help Center</p>
         <p className='font-semibold hover:underline hover:text-yellow-400 cursor-pointer text-gray-300'>Transaction Services Agreement for non-EU/UK Consumers</p>
@@ -43,7 +43,7 @@ function Footer() {
         <span className='hover:text-yellow-400 cursor-pointer mr-1'><FacebookIcon /></span>
         <span className='hover:text-yellow-400 cursor-pointer mr-1'><TwitterIcon /></span>
         <span className='hover:text-yellow-400 cursor-pointer mr-1'><InstagramIcon /></span>
-        <span className='hover:text-yellow-400 cursor-pointer mr-1'><WhatssAppIcon /></span>
+        <span className='hover:text-yellow-400 cursor-pointer mr-1'><GitHub /></span>
       </div>
       <div className='p-3 min-w-56 col-span-2'>
         <h1 className='text-xl font-bold '>Help</h1>

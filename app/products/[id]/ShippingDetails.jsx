@@ -25,7 +25,7 @@ function ShippingDetails({ product }) {
 
   return (
     <>
-    <div className='md:w-1/5 px-2 border-2 rounded-md md:sticky right-0 top-0 md:h-screen overflow-y-auto'>
+    <div className='md:w-1/5 px-2 border-2 rounded-xl md:sticky right-0 top-0 md:h-fit md:py-5 overflow-y-auto'>
             <div className='py-3 flex justify-between border-b border-gray-500'>
               <spna className="font-medium text-md">Ship to</spna>
               <span className='text-gray-600 flex items-center'><LocationOnIcon sx={{fontSize: 15}}/>{location}</span>

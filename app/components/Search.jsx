@@ -4,6 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 
 
@@ -13,6 +14,11 @@ import { useRef, useState } from "react";
     const searchRef = useRef(null);
     const resultsContainerRef = useRef(null);
     const [results, setResults] = useState([]);
+
+    const route = useRouter();
+    function goToDetails(id){
+      route.push('/products/' + id)
+    }
 
     const handleSearchChange = () => {
       searchRef.current.value !== "" ? 
@@ -32,8 +38,8 @@ import { useRef, useState } from "react";
            
             { results.length === 0 && <p className='font-semibold text-sm box-border my-px'>No Results</p>}
             {results.map(({title, id, price, images}) => (
-            <Link key={id} href={'/products/' + id}>
-              <div className='h-12 flex cursor-pointer items-center group'>
+            
+              <div onMouseDown={() => goToDetails(id)} key={id} className='h-12 flex cursor-pointer items-center group'>
               
                 <img alt='item' className='h-full m-2 aspect-square object-contain' src={images[0]} />
                 <div className='h-full group-hover:bg-gray-200 flex flex-col justify-center flex-grow px-2'>
@@ -42,7 +48,7 @@ import { useRef, useState } from "react";
                 </div>
                 
             </div>
-            </Link>
+            
             ))}
           
           </div>

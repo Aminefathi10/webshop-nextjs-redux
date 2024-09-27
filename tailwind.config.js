@@ -15,6 +15,10 @@ module.exports = {
         "cat": "0 0 15px 0 #0005"
       }
     },
+    screens: {
+      sm: '640px',
+      md: '900px',
+    },
   },
   plugins: [],
 };

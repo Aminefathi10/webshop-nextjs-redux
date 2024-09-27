@@ -25,8 +25,11 @@ async function Products({ category }) {
       
       { products.map(({ id, title, price, description, images, rating }) => (
         <Link key={id} href={"/products/" + id}>
-        <div className='flex justify-between h-28 sm:h-fit md:w-56 sm:52 group mb-5 cursor-pointer border-2 border-transparent hover:border-teal-700 rounded-xl overflow-hidden shadow-md sm:flex-col relative'>
-            <img className='md:h-52 sm:44 aspect-square object-contain' src={images[0]} />
+        <div className='flex justify-between h-28 sm:h-fit md:w-56 sm:52 group mb-5 cursor-pointer border-2 border-transparent hover:border-teal-700 rounded-xl overflow-hidden shadow-md sm:flex-col relative group'>
+            <div className="md:h-52 aspect-square overflow-hidden flex justify-center items-center">
+              <img className='h-full object-contain group-hover:scale-110 duration-200' src={images[0]} />
+            </div>
+            
             <div className="flex flex-col px-1 flex-1">
             <h3 className='line-clamp-1 text-bold font-bold'>{title.slice(0, title.indexOf("."))}</h3>
             
