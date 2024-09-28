@@ -22,7 +22,7 @@ function Add_Fav({ product }) {
       router.push('/basket');
       return
     }
-      dispatch(addToBasket(product));
+      dispatch(addToBasket({ quantity: "1", ...product }));
   }
 
   function likeItem(event) {
@@ -32,7 +32,7 @@ function Add_Fav({ product }) {
       dispatch(removeFromFavorite(product.id));
       return
     }
-    dispatch(addToFavorite({ quantity: 1, ...product}));
+    dispatch(addToFavorite(product));
   }
 
     return (

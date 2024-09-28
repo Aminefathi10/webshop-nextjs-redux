@@ -21,7 +21,7 @@ function SignInButton() {
              <h3 className="hidden md:block ">{session.data.user.name.slice(0, session.data.user.name.lastIndexOf(' '))}</h3>
           </> : <>
         <PersonIcon />
-        <h3 className="hidden md:block ">login</h3>
+        <h3 className="hidden md:block ">Sign In</h3>
        </> 
           
           }

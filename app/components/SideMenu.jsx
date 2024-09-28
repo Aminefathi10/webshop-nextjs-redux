@@ -7,6 +7,8 @@ import { useRef, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getUserLocation } from '../redux/features/location/locationSlice';
 import { useSession } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
+import { LoadingSvg } from '../assets/svgs';
 
 
 
@@ -41,6 +43,13 @@ function SideMenu() {
         })
         .catch(error => console.error('Error fetching IP:', error));
     }, []);
+
+    function signInOut(){
+        if(session.status === 'unauthenticated') {
+        signIn()
+        } else {
+        signOut()
+      } } 
     
     function slideBack() {
         document.getElementById("slideref").classList.add("-translate-x-full");
@@ -149,7 +158,7 @@ function SideMenu() {
         <div className="p-2 px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none">Your Account</div>
         <div className="p-2 flex items-center px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none"><img className='mr-1' width={20} src={flag} alt="" />{country}</div>
         <div className="p-2 px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none">Customer Service</div>
-        <div className="mb-5 p-2 px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none">Sign In</div>
+        <button disabled={session.status === 'loading'} onClick={signInOut} className="mb-5 p-2 px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none w-full text-left">{session.status === 'authenticated' ? "Sign Out" : session.status === 'loaing' ? <LoadingSvg className="w-12" /> : "Sign In"}</button>
 
     </div>
 
