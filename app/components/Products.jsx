@@ -9,7 +9,7 @@ import animationData from '../assets/animations/no-products-available.json'
 
 
 async function getProductsData(category) {
-  const res = await fetch('http://localhost:3000/api/products');
+  const res = await fetch(process.env.APP_URL + 'api/products');
   return !category ? res.json() : res.json()
   .then(res => res.filter(item => item.category === category));
 }
@@ -30,16 +30,16 @@ async function Products({ category }) {
               <img className='h-full object-contain group-hover:scale-110 duration-200' src={images[0]} />
             </div>
             
-            <div className="flex flex-col px-1 flex-1">
-            <h3 className='line-clamp-1 text-bold font-bold'>{title.slice(0, title.indexOf("."))}</h3>
-            
-            <h3 className='text-orange-500 flex items-end text-sm font-semibold'>
-            <span className='font-bold'>{rating.rate}</span>{Array(Math.floor(rating.rate)).fill().map((_, i) => <StarRateIcon sx={{fontSize: "1.55em"}} key={i} />)} {Array(5 - Math.floor(rating.rate)).fill().map((_, i) => <StarBorderIcon sx={{fontSize: "1.55em"}} key={i} />)}
-            <span className='text-gray-600 flex items-end'>({rating.count} <PersonIcon/>)</span>
-            </h3>
-            
-            <h2 className='font-semibold text-gray-700'>${price}</h2>
-            <p className='line-clamp-2 md:line-clamp-3 text-sm leading-tight sm:hidden md:hidden'>{description}</p>
+            <div className="flex flex-col px-1 flex-1 justify-start">
+              <h3 className='line-clamp-1 text-bold font-bold'>{title.slice(0, title.indexOf("."))}</h3>
+              
+              <h3 className='text-orange-500 flex items-end text-sm font-semibold'>
+              <span className='font-bold'>{rating.rate}</span>{Array(Math.floor(rating.rate)).fill().map((_, i) => <StarRateIcon sx={{fontSize: "1.55em"}} key={i} />)} {Array(5 - Math.floor(rating.rate)).fill().map((_, i) => <StarBorderIcon sx={{fontSize: "1.55em"}} key={i} />)}
+              <span className='text-gray-600 flex items-end'>({rating.count} <PersonIcon/>)</span>
+              </h3>
+              
+              <h2 className='font-semibold text-gray-700'>${price}</h2>
+              <p className='line-clamp-2 md:line-clamp-3 text-sm leading-tight sm:hidden md:hidden'>{description}</p>
             </div>
             <Add_Fav product={{ id, title, price, description, images, rating }} />
         </div>

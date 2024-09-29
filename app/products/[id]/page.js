@@ -6,7 +6,7 @@ import ShippingDetails from './ShippingDetails.jsx'
 
 
 async function getProductsData(id) {
-    const res = await fetch('http://localhost:3000/api/products/' + id);
+    const res = await fetch(process.env.APP_URL + 'api/products/' + id);
     return res.json();
   }
 

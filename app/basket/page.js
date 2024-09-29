@@ -25,7 +25,7 @@ function Cart() {
   }, [items])
 
   return (
-    <div className="flex max-w-6xl mx-auto flex-col sm:flex-row">
+    <div className="flex max-w-6xl mx-auto flex-col sm:flex-row py-4">
       <div className="sm:w-3/5 px-5">
         <h1 className="text-3xl font-bold pl-10 py-2">Shopping Basket</h1>
         <div className="flex flex-col gap-5 px-2 py-3 w-full">
@@ -40,7 +40,7 @@ function Cart() {
             
           </div> }
           { items.map(({ id, title, price, images, quantity }) => (
-            <div key={id} className="flex items-center justify-between shadow-md border border-black rounded-md w-full">
+            <div key={id} className="flex items-center justify-between shadow-xl rounded-md w-full">
               <img width={96} height={96} className="w-24 aspect-square object-contain m-2" src={images[0]} alt="item" />
 
               <div className="flex flex-col flex-1 px-2 justify-evenly h-24">
