@@ -4,7 +4,9 @@ import path from "path";
 
 
 export async function GET(_req, { params }) {
-   const filePath = path.join(process.cwd(), '_data', 'products.json');
+   
+   try {
+      const filePath = path.join(process.cwd(), '_data', 'products.json');
    const fileData = fs.readFileSync(filePath, 'utf8');
    const jsonData = JSON.parse(fileData).find(item => item.id === parseInt(params.id));
 
@@ -13,6 +15,11 @@ export async function GET(_req, { params }) {
    } else {
     return NextResponse.json({ error: "Item not found!" }, { status: 404 });
    }
+   } catch (error) {
+      console.error("Error reading or parsing file:", error);
+      return NextResponse.json({ error: "Failed to fetch data" }, { status: 500 });
+    }
+   
 
    
 }
