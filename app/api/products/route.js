@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import fs from 'fs';
+import { promises as fs} from 'fs';
 
 
 export async function GET() {
    try {
-      const fileData = fs.readFileSync('/app/_data/products.json', 'utf8');
+      const fileData = await fs.readFileSync('/app/_data/products.json', 'utf8');
       const jsonData = JSON.parse(fileData);
 
       return NextResponse.json(jsonData);
