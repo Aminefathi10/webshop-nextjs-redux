@@ -7,13 +7,31 @@ import Link from 'next/link';
 
 
 async function getProductsData(id) {
+  try {
     const res = await fetch(process.env.APP_URL + 'api/products/' + id);
-    return res.json()
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Error: ${res.status} - ${errorText}`);
+    }
+    return await res.json()
+  } catch (error) {
+
+    console.error("Failed to fetch products data:", error.message);
+    throw error;
+
+  }
+    
   }
 
 async function Details({ params }) {
-
-    const product = await getProductsData(params.id);
+  var product;
+  try {
+     product = await getProductsData(params.id);
+  } catch (error) {
+    product = {error};
+  }
+    
 
     if (product.error) {
       return (
@@ -23,7 +41,8 @@ async function Details({ params }) {
         </div>
       )
     }
-    const {id, title, description, category, images, price, rating} = product
+
+    const {id, title, description, category, images, price, rating} = product;
 
     const fakePrice = Math.floor(Math.random() * ( Math.ceil(price) - 5)) + 5 + Math.ceil(price);
     const fakePercentage  =  100 - Math.floor((Math.ceil(price) * 100) / fakePrice);
