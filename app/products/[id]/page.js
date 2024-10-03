@@ -2,18 +2,28 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Products from '../../components/Products';
 import Slider from './Slider.jsx';
-import ShippingDetails from './ShippingDetails.jsx'
+import ShippingDetails from './ShippingDetails.jsx';
+import Link from 'next/link';
 
 
 async function getProductsData(id) {
     const res = await fetch(process.env.APP_URL + 'api/products/' + id);
-    return res.json();
+    return res.json()
   }
 
 async function Details({ params }) {
 
+    const product = await getProductsData(params.id);
 
-    const {id, title, description, category, images, price, rating} = await getProductsData(params.id);
+    if (product.error) {
+      return (
+        <div className='flex flex-col py-64 items-center justify-center'>
+          <h1 className=' text-xl font-bold '>The item you are requesting does not exist!</h1>
+          <p className='text-lg'>Search somthing or Go back to <Link className='text-sky-500' href='/'>Porducts Feed</Link></p>
+        </div>
+      )
+    }
+    const {id, title, description, category, images, price, rating} = product
 
     const fakePrice = Math.floor(Math.random() * ( Math.ceil(price) - 5)) + 5 + Math.ceil(price);
     const fakePercentage  =  100 - Math.floor((Math.ceil(price) * 100) / fakePrice);
@@ -21,8 +31,6 @@ async function Details({ params }) {
 
   return (
     <div className='max-w-[1300px] md:flex mx-auto'>
-      
-
       <div className=" md:w-4/5">
         <div className='flex flex-col md:flex-row w-full'>
           <div className=" md:w-1/2 mx-auto h-full">

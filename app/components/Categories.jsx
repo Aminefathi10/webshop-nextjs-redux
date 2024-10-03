@@ -44,6 +44,7 @@ function Categories() {
            />
       
       <Category
+        category='back+to+school'
         classes="shadow-cat px-3 py-2 cursor-pointer w-48 md:w-64 z-10 bg-white group"
         title="Back To School"
         Image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/BAU2024Aug/SchoolSupplies_1x._SY116_CB566180589_.jpg"
@@ -53,6 +54,7 @@ function Categories() {
            />
 
       <Category
+        category='toys'
         classes="shadow-cat px-3 py-2 cursor-pointer w-48 md:w-64 z-10 bg-white group"
         title="Toys"
         Image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Events/2024/DskBTFQuadCards/Fuji_BTF_Quad_Cards_1x_Playground_sets._SY116_CB558654384_.jpg"
