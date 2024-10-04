@@ -5,6 +5,13 @@ import Slider from './Slider.jsx';
 import ShippingDetails from './ShippingDetails.jsx';
 import Link from 'next/link';
 
+export async function generateStaticParams() {
+  const res = await fetch(process.env.APP_URL + 'api/products/' ).then(data => data.json());
+   return res.map(item => ({
+    id: item.id.toString()
+   }))
+}
+
 
 async function getProductsData(id) {
   try {
