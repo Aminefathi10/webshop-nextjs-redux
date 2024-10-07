@@ -9,8 +9,7 @@ import animationData from '../assets/animations/no-products-available.json'
 
 
 async function getProductsData(category) {
-  const appUrl = process.env.APP_URL || process.env.VERCEL_URL;
-  const res = await fetch(appUrl + 'api/products');
+  const res = await fetch(process.env.APP_URL + 'api/products');
   return !category ? res.json() : res.json()
   .then(res => res.filter(item => item.category === category));
 }

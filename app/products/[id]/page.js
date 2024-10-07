@@ -5,11 +5,10 @@ import Slider from './Slider.jsx';
 import ShippingDetails from './ShippingDetails.jsx';
 import Link from 'next/link';
 
-const appUrl = process.env.APP_URL || process.env.VERCEL_URL;
 
 export async function generateStaticParams() {
   
-  const res = await fetch(appUrl + 'api/products/' ).then(data => data.json());
+  const res = await fetch(process.env.APP_URL + 'api/products/' ).then(data => data.json());
    return res.map(item => ({
     id: item.id.toString()
    }))
@@ -18,7 +17,7 @@ export async function generateStaticParams() {
 
 async function getProductsData(id) {
   try {
-    const res = await fetch(appUrl + 'api/products/' + id);
+    const res = await fetch(process.env.APP_URL + 'api/products/' + id);
 
     if (!res.ok) {
       const errorText = await res.text();
