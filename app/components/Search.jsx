@@ -1,8 +1,6 @@
 'use client'
 
 import SearchIcon from '@mui/icons-material/Search';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useRef, useState } from "react";
 import { useRouter } from 'next/navigation';
 

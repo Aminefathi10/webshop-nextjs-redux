@@ -5,41 +5,47 @@ import Slider from './Slider.jsx';
 import ShippingDetails from './ShippingDetails.jsx';
 import Link from 'next/link';
 
+const appUrl = process.env.APP_URL || process.env.VERCEL_URL;
+
 export async function generateStaticParams() {
-  const res = await fetch(process.env.APP_URL + 'api/products/' ).then(data => data.json());
+  
+  const res = await fetch(appUrl + 'api/products/' ).then(data => data.json());
    return res.map(item => ({
     id: item.id.toString()
    }))
 }
 
 
-// async function getProductsData(id) {
-//   try {
-//     const res = await fetch(process.env.APP_URL + 'api/products/' + id);
+async function getProductsData(id) {
+  try {
+    const res = await fetch(appUrl + 'api/products/' + id);
 
-//     if (!res.ok) {
-//       const errorText = await res.text();
-//       throw new Error(`Error: ${res.status} - ${errorText}`);
-//     }
-//     return await res.json()
-//   } catch (error) {
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Error: ${res.status} - ${errorText}`);
+    }
+    return await res.json()
+  } catch (error) {
 
-//     console.error("Failed to fetch products data:", error.message);
-//     throw error;
+    console.error("Failed to fetch products data:", error.message);
+    throw error;
 
-//   }
-//   }
+  }
+  }
 
-const getProductsData = async () => {
-  const res = await fetch(process.env.APP_URL + 'api/products/')
-  return res.json();
-}
+
 
 async function Details({ params }) {
-  
-    const products = await getProductsData();
 
-    if (!products[parseInt(params.id)]) {
+   let product;
+    try {
+       product = await getProductsData(params.id);
+    } catch (error) {
+      product = { error }
+    }
+    
+
+    if (product.error) {
       return (
         <div className='flex flex-col py-64 items-center justify-center'>
           <h1 className=' text-xl font-bold '>The item you are requesting does not exist!</h1>
@@ -48,7 +54,7 @@ async function Details({ params }) {
       )
     }
 
-    const {id, title, description, category, images, price, rating} = products[parseInt(params.id)];
+    const {id, title, description, category, images, price, rating} = product;
 
     const fakePrice = Math.floor(Math.random() * ( Math.ceil(price) - 5)) + 5 + Math.ceil(price);
     const fakePercentage  =  100 - Math.floor((Math.ceil(price) * 100) / fakePrice);

@@ -8,7 +8,8 @@ import FavoriteButton from './FavoriteButton.jsx';
 import SignInButton from './SignInButton.jsx';
 
 async function getProductsData() {
-  const res = await fetch(process.env.APP_URL + 'api/products');
+  const appUrl = process.env.APP_URL || process.env.VERCEL_URL;
+  const res = await fetch(appUrl + 'api/products');
   return res.json();
 }
 
