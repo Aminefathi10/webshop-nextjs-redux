@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export async function generateStaticParams() {
   
-  const res = await fetch(process.env.APP_URL + 'api/products/' ).then(data => data.json());
+  const res = await fetch('https://' + process.env.VERCEL_URL + '/api/products/' ).then(data => data.json());
    return res.map(item => ({
     id: item.id.toString()
    }))
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 async function getProductsData(id) {
   try {
-    const res = await fetch(process.env.APP_URL + 'api/products/' + id);
+    const res = await fetch('https://' + process.env.VERCEL_URL + '/api/products/' + id);
 
     if (!res.ok) {
       const errorText = await res.text();
