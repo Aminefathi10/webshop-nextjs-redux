@@ -1,8 +1,8 @@
 import StarRateIcon from '@mui/icons-material/StarRate';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Products from '../../components/Products';
-import Slider from './Slider.jsx';
-import ShippingDetails from './ShippingDetails.jsx';
+import Slider from '../../components/Slider.jsx';
+import ShippingDetails from '../../components/ShippingDetails.jsx';
 import Link from 'next/link';
 
 
