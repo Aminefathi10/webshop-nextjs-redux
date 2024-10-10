@@ -39,9 +39,9 @@ function Cart() {
             </p>
             
           </div> }
-          { items.map(({ id, title, price, images, quantity }) => (
+          { items.map(({ id, title, price, image, quantity }) => (
             <div key={id} className="flex items-center justify-between shadow-xl rounded-md w-full">
-              <img width={96} height={96} className="w-24 aspect-square object-contain m-2" src={images[0]} alt="item" />
+              <img width={96} height={96} className="w-24 aspect-square object-contain m-2" src={image} alt="item" />
 
               <div className="flex flex-col flex-1 px-2 justify-evenly h-24">
                   <h1 className="text-xl font-bold  flex justify-between"><p className="line-clamp-1">{title}</p>

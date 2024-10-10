@@ -9,7 +9,7 @@ import animationData from '../assets/animations/no-products-available.json'
 
 
 async function getProductsData(category) {
-  const res = await fetch('https://' + process.env.VERCEL_URL + '/api/products');
+  const res = await fetch('https://fakestoreapi.com/products');
   return !category ? res.json() : res.json()
   .then(res => res.filter(item => item.category === category));
 }
@@ -23,11 +23,11 @@ async function Products({ category }) {
     { products.length === 0 && <LottiePlayer animationData={animationData} />}
     <div className='w-full px-2 sm:grid sm:grid-cols-3 md:grid-cols-4 mx-auto content-center justify-items-center'>
       
-      { products.map(({ id, title, price, description, images, rating }) => (
+      { products.map(({ id, title, price, description, image, rating }) => (
         <Link key={id} href={"/products/" + id}>
         <div className='flex justify-between h-28 sm:h-fit md:w-56 sm:52 group mb-5 cursor-pointer border-2 border-transparent md:hover:border-teal-700 rounded-xl overflow-hidden shadow-md sm:flex-col relative group'>
             <div className="md:h-52 aspect-square overflow-hidden flex justify-center items-center">
-              <img className='h-full object-contain md:group-hover:scale-110 duration-200' src={images[0]} />
+              <img className='h-full object-contain md:group-hover:scale-110 duration-200' src={image} />
             </div>
             
             <div className="flex flex-col px-1 flex-1 justify-start">
@@ -41,7 +41,7 @@ async function Products({ category }) {
               <h2 className='font-semibold text-gray-700'>${price}</h2>
               <p className='line-clamp-2 md:line-clamp-3 text-sm leading-tight sm:hidden md:hidden'>{description}</p>
             </div>
-            <Add_Fav product={{ id, title, price, description, images, rating }} />
+            <Add_Fav product={{ id, title, price, description, image, rating }} />
         </div>
         </Link>
       )) }

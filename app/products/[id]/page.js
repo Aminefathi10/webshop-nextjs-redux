@@ -6,18 +6,18 @@ import ShippingDetails from '../../components/ShippingDetails.jsx';
 import Link from 'next/link';
 
 
-// export async function generateStaticParams() {
+export async function generateStaticParams() {
   
-//   const res = await fetch('https://' + process.env.VERCEL_URL + '/api/products/' ).then(data => data.json());
-//    return res.map(item => ({
-//     id: item.id.toString()
-//    }))
-// }
+  const res = await fetch('https://fakestoreapi.com/products' ).then(data => data.json());
+   return res.map(item => ({
+    id: item.id.toString()
+   }))
+}
 
 
 async function getProductsData(id) {
   try {
-    const res = await fetch(process.env.APP_URL + 'api/products/' + id);
+    const res = await fetch('https://fakestoreapi.com/products/' + id);
 
     if (!res.ok) {
       const errorText = await res.text();
@@ -53,7 +53,7 @@ async function Details({ params }) {
       )
     }
 
-    const {id, title, description, category, images, price, rating} = product;
+    const {id, title, description, category, image, price, rating} = product;
 
     const fakePrice = Math.floor(Math.random() * ( Math.ceil(price) - 5)) + 5 + Math.ceil(price);
     const fakePercentage  =  100 - Math.floor((Math.ceil(price) * 100) / fakePrice);
@@ -64,7 +64,7 @@ async function Details({ params }) {
       <div className=" md:w-4/5">
         <div className='flex flex-col md:flex-row w-full'>
           <div className=" md:w-1/2 mx-auto h-full">
-            <Slider images={images} />
+            <Slider image={image} />
           </div>
 
           <div className='px-3 py-2 md:w-1/2'>
@@ -101,7 +101,7 @@ async function Details({ params }) {
 
       </div>
 
-      <ShippingDetails product={{id, title, description, category, images, price, rating}} />
+      <ShippingDetails product={{id, title, description, category, image, price, rating}} />
       <div className='mt-4 md:hidden block'>
             <h1 className='text-2xl font-bold ml-4 my-4'>Related Items</h1>
             <Products category={category}/>

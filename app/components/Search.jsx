@@ -35,11 +35,11 @@ import { useRouter } from 'next/navigation';
            <div ref={resultsContainerRef} className="absolute w-full left-0 top-9 md:top-11 z-20 bg-white p-2 rounded-md text-gray-600 hidden">
            
             { results.length === 0 && <p className='font-semibold text-sm box-border my-px'>No Results</p>}
-            {results.map(({title, id, price, images}) => (
+            {results.map(({title, id, price, image}) => (
             
               <div onMouseDown={() => goToDetails(id)} key={id} className='h-12 flex cursor-pointer items-center group'>
               
-                <img alt='item' className='h-full m-2 aspect-square object-contain' src={images[0]} />
+                <img alt='item' className='h-full m-2 aspect-square object-contain' src={image} />
                 <div className='h-full group-hover:bg-gray-200 flex flex-col justify-center flex-grow px-2'>
                   <h3 className='text-sm font-semibold line-clamp-1'>{title}</h3>
                   <h3>${price}</h3>
