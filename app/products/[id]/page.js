@@ -6,13 +6,13 @@ import ShippingDetails from '../../components/ShippingDetails.jsx';
 import Link from 'next/link';
 
 
-export async function generateStaticParams() {
+// export async function generateStaticParams() {
   
-  const res = await fetch('https://fakestoreapi.com/products' ).then(data => data.json());
-   return res.map(item => ({
-    id: item.id.toString()
-   }))
-}
+//   const res = await fetch('https://fakestoreapi.com/products' ).then(data => data.json());
+//    return res.map(item => ({
+//     id: item.id.toString()
+//    }))
+// }
 
 
 async function getProductsData(id) {
