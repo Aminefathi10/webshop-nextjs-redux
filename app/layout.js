@@ -22,15 +22,6 @@ export const metadata = {
   description: "demo e-commerce website created by amine",
 };
 
-// async function getLocation() {
-//  return await fetch('https://api.ipify.org?format=json')
-//         .then(response => response.json())
-//         .then(data => {
-//             fetch(`http://ip-api.com/json/${data.ip}`)
-//             .then(res => res.json())
-//         })
-// }
-
 export default async function RootLayout({ children }) {
 
   // const { country, countryCode } = await getLocation();
