@@ -17,7 +17,7 @@ import Link from 'next/link';
 
 async function getProductsData(id) {
   try {
-    const res = await fetch('https://' + process.env.VERCEL_URL + '/api/products/' + id);
+    const res = await fetch(process.env.APP_URL + 'api/products/' + id);
 
     if (!res.ok) {
       const errorText = await res.text();

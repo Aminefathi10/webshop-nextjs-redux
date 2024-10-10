@@ -9,7 +9,7 @@ import animationData from '../assets/animations/no-products-available.json'
 
 
 async function getProductsData(category) {
-  const res = await fetch('https://' + process.env.VERCEL_URL + '/api/products');
+  const res = await fetch(process.env.APP_URL + 'api/products');
   return !category ? res.json() : res.json()
   .then(res => res.filter(item => item.category === category));
 }
@@ -25,9 +25,9 @@ async function Products({ category }) {
       
       { products.map(({ id, title, price, description, images, rating }) => (
         <Link key={id} href={"/products/" + id}>
-        <div className='flex justify-between h-28 sm:h-fit md:w-56 sm:52 group mb-5 cursor-pointer border-2 border-transparent hover:border-teal-700 rounded-xl overflow-hidden shadow-md sm:flex-col relative group'>
+        <div className='flex justify-between h-28 sm:h-fit md:w-56 sm:52 group mb-5 cursor-pointer border-2 border-transparent md:hover:border-teal-700 rounded-xl overflow-hidden shadow-md sm:flex-col relative group'>
             <div className="md:h-52 aspect-square overflow-hidden flex justify-center items-center">
-              <img className='h-full object-contain group-hover:scale-110 duration-200' src={images[0]} />
+              <img className='h-full object-contain md:group-hover:scale-110 duration-200' src={images[0]} />
             </div>
             
             <div className="flex flex-col px-1 flex-1 justify-start">

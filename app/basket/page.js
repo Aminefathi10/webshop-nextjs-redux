@@ -27,10 +27,10 @@ function Cart() {
   return (
     <div className="flex max-w-6xl mx-auto flex-col sm:flex-row py-4">
       <div className="sm:w-3/5 px-5">
-        <h1 className="text-3xl font-bold pl-10 py-2">Shopping Basket</h1>
+        <h1 className="text-xl md:text-3xl font-bold md:pl-8 py-2">Shopping Basket</h1>
         <div className="flex flex-col gap-5 px-2 py-3 w-full">
-          { items.length === 0 && <div className="w-fit mx-auto">
-            <EmptyCart className="w-96" />
+          { items.length === 0 && <div className="w-full md:w-fit mx-auto">
+            <EmptyCart className="w-full md:w-96" />
             <h1 className="font-bold text-lg">Your Basket Is Empty</h1>
             <p>Search something or go back to
             <Link href='/'>
