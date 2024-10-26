@@ -1,17 +1,15 @@
 
 import Products from "../../components/Products";
+import { fetchProductsByCategory } from "@/app/lib/data";
 
-async function CategoryDetails({ params }) {
+export default async function CategoryDetails({ params }) {
 
     const category = params.category.split('%20').join(' ');
-    
+    const products = await fetchProductsByCategory(category);
 
   return (
     <div className="pt-3">
-      
-      <Products category={category}/>
+      <Products products={products}/>
     </div>
   )
 }
-
-export default CategoryDetails

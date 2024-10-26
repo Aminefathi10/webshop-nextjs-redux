@@ -9,7 +9,7 @@ function Signin() {
 
 
   return (
-    <div className="flex py-56 flex-col justify-center items-center gap-2">
+    <div className="flex py-56 flex-col justify-center items-center gap-2 h-screen">
       <button onClick={() => {
         signIn('google', {
           callbackUrl: "/"
