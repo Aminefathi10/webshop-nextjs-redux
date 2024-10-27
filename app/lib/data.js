@@ -1,19 +1,20 @@
+
 import { collRef } from "./firebase";
-import { getDocs, query, queryEqual, where, orderBy } from "firebase/firestore";
+import { getDocs, query, where, orderBy, doc, getDoc } from "firebase/firestore";
 
 
 
 export async function fetchProductsData () {
     
-    const products = await getDocs(collRef).then(snap => {
+    const products = await getDocs(collRef, orderBy('id', 'desc')).then(snap => {
         return snap.docs.map(doc => doc.data());
     });
     return products
 }
 
-export async function fetchProductsByCategory (product_category) {
+export async function fetchProductsByCategory (category) {
 
-    const q = query(collRef, where('id', '==', product_category), orderBy('id', 'desc'));
+    const q = query(collRef, where('category', '==', category));
 
     const products = await getDocs(q).then(snap => {
         return snap.docs.map(doc => doc.data());
@@ -22,11 +23,8 @@ export async function fetchProductsByCategory (product_category) {
 }
 
 export async function fetchProductDetailsData (id) {
-    const q = query(collRef, where('id', '==', parseInt(id)));
+    const docRef = doc(collRef, id);
 
-    const product = await getDocs(q).then(snap => {
-        return snap.docs.map(doc => doc.data());
-    });
-    console.log(product, id)
+    const product = await getDoc(docRef);
     return product
 }

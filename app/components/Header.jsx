@@ -6,16 +6,14 @@ import MenuButton from './MenuButton.jsx';
 import CartButton from './CartButton.jsx';
 import FavoriteButton from './FavoriteButton.jsx';
 import SignInButton from './SignInButton.jsx';
+import { fetchProductsData } from "../lib/data";
 
-async function getProductsData() {
-  const res = await fetch('https://fakestoreapi.com/products');
-  return res.json();
-}
+
 
 
 async function Header() {
  
-  const products = await getProductsData(); 
+  const products = await fetchProductsData(); 
 
   return (
     <>

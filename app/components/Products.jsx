@@ -7,6 +7,8 @@ import Image from 'next/image';
 import Add_Fav from './Add_Fav.jsx'
 import LottiePlayer from './LottiePlayer.jsx';
 import animationData from '../assets/animations/no-products-available.json';
+import { Suspense } from 'react';
+import { ImageSkeleton } from '../ui/skeletons.jsx';
 
 
 
@@ -22,7 +24,10 @@ async function Products({ products }) {
         <Link key={id} href={"/products/" + id}>
         <div className='flex justify-between h-28 sm:h-fit md:w-56 sm:52 group mb-5 cursor-pointer border-2 border-transparent md:hover:border-teal-700 rounded-xl overflow-hidden shadow-md sm:flex-col relative group'>
             <div className="md:h-52 aspect-square overflow-hidden flex justify-center items-center">
+            <Suspense fallback={<ImageSkeleton />}>
               <Image width={187} height={208} alt={title} className='h-full object-contain md:group-hover:scale-110 duration-200' src={images[0]} />
+            </Suspense>
+              
             </div>
             
             <div className="flex flex-col px-1 flex-1 justify-start">

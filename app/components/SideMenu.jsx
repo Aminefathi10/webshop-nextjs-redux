@@ -9,6 +9,7 @@ import { getUserLocation } from '../redux/features/location/locationSlice';
 import { useSession } from 'next-auth/react';
 import { signIn, signOut } from 'next-auth/react';
 import { LoadingSvg } from '../assets/svgs';
+import Image from 'next/image';
 
 
 
@@ -28,14 +29,11 @@ function SideMenu() {
         fetch('https://api.ipify.org?format=json')
         .then(response => response.json())
         .then(data => {
-            //  addDoc(colRef, {
-            //         ip: data.ip
-            //  })
-            fetch(`http://ip-api.com/json/${data.ip}`)
+            fetch(`https://ipapi.co/${data.ip}/json`)
             .then(res => res.json())
             .then(location => {
-                setCountry(location.country);
-                const code = location.countryCode.toLowerCase();
+                setCountry(location.country_name);
+                const code = location.country_code.toLowerCase();
                 setFlag(`https://flagcdn.com/${code}.svg`);
                 dispatch(getUserLocation(location.country))
             })
@@ -156,7 +154,7 @@ function SideMenu() {
         {/* settings */}
         <h1 className="text-xl font-bold px-4 my-2">Help and Settings</h1>
         <div className="p-2 px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none">Your Account</div>
-        <div className="p-2 flex items-center px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none"><img className='mr-1' width={20} src={flag} alt="" />{country}</div>
+        <div className="p-2 flex items-center px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none"><Image className='mr-1' width={20} height={13.328} src={flag} alt="flag" />{country}</div>
         <div className="p-2 px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none">Customer Service</div>
         <button disabled={session.status === 'loading'} onClick={signInOut} className="mb-5 p-2 px-10 text-md font-semibold hover:bg-slate-300 cursor-pointer select-none w-full text-left">{session.status === 'authenticated' ? "Sign Out" : session.status === 'loaing' ? <LoadingSvg className="w-12" /> : "Sign In"}</button>
 

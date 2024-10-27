@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import { selectItems, removeFromBasket, increment, decrement } from "../redux/features/basket/basketSlice";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -39,12 +40,12 @@ function Cart() {
             </p>
             
           </div> }
-          { items.map(({ id, title, price, image, quantity }) => (
+          { items.map(({ id, title, price, images, quantity }) => (
             <div key={id} className="flex items-center justify-between shadow-xl rounded-md w-full">
-              <img width={96} height={96} className="w-24 aspect-square object-contain m-2" src={image} alt="item" />
+              <Image width={96} height={96} className="w-24 aspect-square object-contain m-2" src={images[0]} alt={title} />
 
               <div className="flex flex-col flex-1 px-2 justify-evenly h-24">
-                  <h1 className="text-xl font-bold  flex justify-between"><p className="line-clamp-1">{title}</p>
+                  <h1 className="text-md font-bold text-gray-700 flex justify-between"><p className="line-clamp-1">{title}</p>
                 
                   <button onClick={() => dispatch(removeFromBasket(id))} className="text-sm px-2 text-gray-700">
                     <DeleteIcon />
