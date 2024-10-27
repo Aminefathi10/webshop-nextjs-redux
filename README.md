@@ -23,7 +23,7 @@ Feel free to explore its functionality, design, and code to see how we can build
 
 - **Frontend:** React / Next.js (for fast rendering and SEO optimization)  
 - **Styling:** Tailwind CSS for modern UI design  
-- **Backend:** Node.js / Express (demo API for handling requests)  
+- **Backend:** Node.js / Next.js (demo API for handling requests)  
 - **Database:** firebase firestore (for storing products, users, and orders)  
 - **Hosting:** Vercel (fast deployment and reliable uptime)
 
