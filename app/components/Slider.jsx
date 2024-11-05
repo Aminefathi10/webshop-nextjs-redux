@@ -34,7 +34,7 @@ function Slider({images}) {
               { images.map((src, i) => (
                 <div className='flex items-center' key={i}>
                   <Suspense fallback={<ImageSkeleton />}>
-                    <Image width='400' height='400' className='w-full aspect-square object-contain' src={src} alt="" />
+                    <Image width={433} height={433} className='w-full aspect-square object-contain' src={src} alt="" />
                   </Suspense>
                   
                 </div>
