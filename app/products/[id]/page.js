@@ -30,9 +30,6 @@ async function Details({ params }) {
     }
     
 
-    
-
-  
   const {id, title, description, category, images, price, rating} = productSnap.data();
   const products = await fetchProductsByCategory(category);
 
@@ -76,7 +73,7 @@ async function Details({ params }) {
 
           <div className='mt-4 hidden md:block'>
             <h1 className='text-2xl font-bold ml-4 my-4'>Related Items</h1>
-            <Products products={products}/>
+            <Products products={products.filter(item => item.id != id)}/>
           </div>
           
 
@@ -85,7 +82,7 @@ async function Details({ params }) {
       <ShippingDetails product={{id, title, description, category, images, price, rating}} />
       <div className='mt-4 md:hidden block'>
             <h1 className='text-2xl font-bold ml-4 my-4'>Related Items</h1>
-            <Products products={products}/>
+            <Products products={products.filter(item => item.id != id)}/>
       </div>
           
     </div>

@@ -23,7 +23,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "demo shop",
+  title: "ShopSphere",
   description: "demo e-commerce website created by amine",
 };
 

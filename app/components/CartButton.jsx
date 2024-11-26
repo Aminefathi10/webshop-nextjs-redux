@@ -11,7 +11,7 @@ function CartButton() {
 
   return (
     <div onClick={() => route.push('/basket')} className="flex flex-col items-center justify-center text-white cursor-pointer hover:text-sky-400 font-semibold relative">
-        <span className='absolute top-[-2px] left-[5.5px] text-sm md:text-md md:top-[-6px] md:left-[18px]'>{items.length}</span>
+        <span className='absolute top-[-5px] left-[5.5px] text-sm md:text-md md:top-[-6px] md:left-[16px]'>{items.length}</span>
         <CartIcon className="w-6" />
         <h3 className="hidden md:block ">Basket</h3>
     </div>
