@@ -22,7 +22,7 @@ async function Header() {
         <div className="flex">
           <MenuButton />
           <Link className="flex items-center" href='/'>
-          <Image className="md:h-10" width={170} height={400} src='/logo.png' alt="logo" style={{objectFit: 'contain'}} />
+          <Image className="md:h-10" width={170} height={28} src='/logo.png' alt="logo" style={{objectFit: 'contain'}} />
           </Link>
           
           {/* <img className="h-8 md:h-10 cursor-pointer" src={logo} alt="logo" /> */}
