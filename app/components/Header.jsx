@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../assets/logo.png";
 import Search from "./Search.jsx";
 import MenuButton from './MenuButton.jsx';
 import CartButton from './CartButton.jsx';
@@ -23,7 +22,7 @@ async function Header() {
         <div className="flex">
           <MenuButton />
           <Link className="flex items-center" href='/'>
-          <Image className="md:h-10" width={170} src={logo} alt="logo" style={{objectFit: 'contain'}} />
+          <Image className="md:h-10" width={170} src='/logo.png' alt="logo" style={{objectFit: 'contain'}} />
           </Link>
           
           {/* <img className="h-8 md:h-10 cursor-pointer" src={logo} alt="logo" /> */}
