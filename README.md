@@ -1,4 +1,4 @@
-# 🌐 Demo E-Commerce Website  
+# 🌐 E-Commerce Website  
 
 Welcome to the **Demo E-Commerce Website**! This project showcases the essential features of a modern online store, built with performance and user experience in mind.
 
