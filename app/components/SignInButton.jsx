@@ -8,6 +8,7 @@ import Image from 'next/image';
 function SignInButton() {
 
   const session = useSession();
+  console.log(session)
 
   return (
     <div onClick={() => {if(session.status === 'unauthenticated') {
@@ -17,7 +18,7 @@ function SignInButton() {
                         } } }
                          className="flex flex-col items-center justify-center text-white cursor-pointer hover:text-sky-400 font-semibold">
        { session.status === 'authenticated' ? <>
-            <Image className='rounded-full' src={session.data.user.image} width={23} height={23} alt='avatar' />
+            <Image className='rounded-full' src={session.data.user.image} width={23} height={23} alt='' />
              <h3 className="hidden md:block ">{session.data.user.name.slice(0, session.data.user.name.lastIndexOf(' '))}</h3>
           </> : <>
         <PersonIcon />
